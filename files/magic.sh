@@ -21,6 +21,12 @@ pbf_country="$(config_get pbf_country)"
 ns_location="$(config_get ns_location)"
 num_cores="$(config_get num_cores)"
 port="$(config_get port)"
+MIN_SPEED="$(config_get MIN_SPEED)"
+MAX_SPEED="$(config_get MAX_SPEED)"
+DURATION="$(config_get DURATION)"
+CLIPPING="$(config_get CLIPPING)"
+PAUSE="$(config_get PAUSE)"
+OFFSET="$(config_get OFFSET)"
 B="$(config_get B)"
 BM_TOTALRUNS="$(config_get BM_TOTALRUNS)"
 BM_CORES="$(config_get BM_CORES)"
@@ -58,6 +64,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 		echo "ERROR"
 		exit 1
 	fi
+
 	cd ${osrm_build_folder}
 	./prepare_pbf.sh ${map_files_location}/${pbf_file_name}
 	if [ $retVal -ne 0 ]; then
@@ -66,9 +73,10 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 	fi
 fi
 
+
 sudo killall -q start_routed.sh
 #Run map server
-sudo -b ./start_routed.sh ${map_files_location}/${pbf_file_name}.osrm ${port} ${num_cores} &
+sudo -b ./start_routed.sh ${map_files_location}/${pbf_file_name}.osrm ${port} ${num_cores}
 if [ $retVal -ne 0 ]; then
 	echo "ERROR"
 	exit 1
@@ -115,7 +123,7 @@ if [ ! -f ${bm_run_location}/${bm_script_name} ]; then
 	fi
 fi
 
-nohup ./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} ${BM_NODES} &
+nohup ./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NODES[*]}" ${MIN_SPEED} ${MAX_SPEED} ${DURATION} ${CLIPPING} ${PAUSE} ${map_files_location} ${pbf_file_name} ${convert_file_name} ${OFFSET} &
 
 #Run ns simulation
 if [ ! -f ${ns_location}/scratch/${ns_code_name} ]; then
@@ -138,6 +146,6 @@ if [ ! -f ${ns_location}/run/${ns_script_name} ]; then
 	fi
 fi
 cd ${ns_location}/run/
-nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} ${NS_NODES} ${NS_ATTACKTYPE} ${NS_ATTACKLOC} ${NS_DEFENCE} &
+nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}" &
 
-python3 extractDataBlackholeMultiple.py Blackhole_n
+python3 getAvg.py "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}"
