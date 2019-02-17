@@ -97,13 +97,13 @@ PERCORE=$(($TOTALRUNS/$CORES))
 #	done
 #done
 
-for i in ${$10[@]}; do
+for i in ${10}; do
 	N=$i
-	for j in ${$11[@]}; do
+	for j in ${11}; do
 		ATTACKTYPE=$j
-		for k in ${$12[@]}; do
+		for k in ${12}; do
 			ATTACKLOC=$k
-			for l in ${$13[@]}; do
+			for l in ${13}; do
 				DEFENCE=$l
 				runOnCores&
 				wait
