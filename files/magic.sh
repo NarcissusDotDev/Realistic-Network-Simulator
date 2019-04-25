@@ -89,6 +89,7 @@ fi
 
 sudo killall -q start_routed.sh
 #Run map server
+cd ${osrm_build_folder}
 sudo -b ./start_routed.sh ${map_files_location}/${pbf_file_name}.osrm ${port} ${num_cores}
 if [ $? -ne 0 ]; then
 	echo "ERROR"
