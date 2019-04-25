@@ -110,10 +110,6 @@ if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.net.xml ]; then
 fi
 
 if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.buildings.xml ]; then
-	if [ ! -d ${bm_run_location} ]; then
-		mkdir ${bm_run_location}
-	fi
-	cd ${bm_run_location}
 	polyconvert --prune.in-net --osm.keep-full-type --net-file ${map_files_location}/${pbf_file_name}-${B}.net.xml --osm-files ${map_files_location}/${pbf_file_name}.osm --type-file ${map_files_location}/${buildings_typ_name} -o ${map_files_location}/${pbf_file_name}-${B}.buildings.xml
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
@@ -149,7 +145,7 @@ if [ ! -f ${ns_location}/scratch/${ns_code_name}.cc ]; then
 fi
 cd ${ns_location}
 ./waf configure --build-profile=optimized --enable-examples --enable-tests
-./waf --run scratch/${ns_code_name}
+./waf build
 
 if [ ! -f ${ns_location}/run-${ns_run_location}/${ns_script_name} ]; then
 	wget ${ns_script_link} -P ${ns_location}/run-${ns_run_location}/
