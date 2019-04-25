@@ -9,7 +9,6 @@ pbf_file_name=$4
 ns_location=$5
 ns_code_name=$6
 N=0
-ATTACKLOC=0 # Attacker location, 1 - Map based. 2 - Start next to target. 3 - Radius at angle from target. 4 - Between receiver and sender
 ATTACKTYPE=0 # 0 - No Attack, 1 - Loud blackhole, 2 - Silent blackhole
 DEFENCE=0 # 0 - No defence, 1 - DCFM, 2 - DCFM + Route
 BLDGFILE="${map_files_location}/${pbf_file_name}-${B}.buildings.xml"
@@ -45,7 +44,7 @@ function runMultiple() {
 	R=$1
 
 	local MYTEMPDIR=$(mktemp -dp .)
-	local FILE="../Blackhole_n${N}_AttackType-${ATTACKTYPE}_AttackLoc-${ATTACKLOC}_Defence-${DEFENCE}_"
+	local FILE="../Blackhole_n${N}_AttackType-${ATTACKTYPE}_Defence-${DEFENCE}_"
 	local LOGFILE="${FILE}log-r${R}.txt"
 	local LOGFILETOTAL="${FILE}log.txt"
 	
@@ -88,11 +87,9 @@ PERCORE=$(($TOTALRUNS/$CORES))
 
 #for ((N=30; N<= 30; N+=100)); do
 #	for ((ATTACKTYPE=0; ATTACKTYPE <= 1; ATTACKTYPE+=1)); do
-#		for ((ATTACKLOC=1; ATTACKLOC <= 6; ATTACKLOC+=1)); do
-#			for ((DEFENCE=0; DEFENCE <= 1; DEFENCE+=1)); do
-#				runOnCores&
-#				wait
-#			done
+#		for ((DEFENCE=0; DEFENCE <= 1; DEFENCE+=1)); do
+#			runOnCores&
+#			wait
 #		done
 #	done
 #done
@@ -101,13 +98,10 @@ for i in ${10}; do
 	N=$i
 	for j in ${11}; do
 		ATTACKTYPE=$j
-		for k in ${12}; do
-			ATTACKLOC=$k
-			for l in ${13}; do
-				DEFENCE=$l
-				runOnCores&
-				wait
-			done
+		for l in ${12}; do
+			DEFENCE=$l
+			runOnCores&
+			wait
 		done
 	done
 done
