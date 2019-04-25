@@ -115,7 +115,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.buildings.xml ]; then
 	fi
 fi
 
-if [ ! -f ${bm_run_location}/${convert_file_name} ]; then
+if [ ! -f ${convert_file_name} ]; then
 	wget ${convert_file_link}
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
@@ -123,8 +123,9 @@ if [ ! -f ${bm_run_location}/${convert_file_name} ]; then
 	fi
 fi
 
-if [ ! -f ${bm_run_location}/${bm_script_name} ]; then
+if [ ! -f ${bm_script_name} ]; then
 	wget ${bm_script_link}
+	chmod +x ${bm_script_name}
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
@@ -145,18 +146,18 @@ cd ${ns_location}
 ./waf configure --build-profile=optimized --enable-examples --enable-tests
 ./waf build
 
-if [ ! -f ${ns_location}/run-${ns_run_location}/${ns_script_name} ]; then
-	wget ${ns_script_link} -P ${ns_location}/run-${ns_run_location}/
-	chmod +x ${ns_location}/run-${ns_run_location}/${ns_script_name}
+cd ${ns_location}/run-${ns_run_location}/
+if [ ! -f ${ns_script_name} ]; then
+	wget ${ns_script_link}
+	chmod +x ${ns_script_name}
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
 fi
-cd ${ns_location}/run-${ns_run_location}/
 nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_DEFENCE[*]}" &
 
-if [ ! -f ${ns_location}/run-${ns_run_location}/${parser_script_name} ]; then
+if [ ! -f ${parser_script_name} ]; then
         wget ${parser_script_link}
         chmod +x ${parser_script_name}
         if [ $? -ne 0 ]; then
