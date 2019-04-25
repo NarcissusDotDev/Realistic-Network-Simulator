@@ -254,6 +254,13 @@ static void AbortOnNeighbor (Ptr<Node> node, Ipv4Address address){
 	}
 }
 
+static void AbortOnNeighbor (Ptr<Node> node, Ipv4Address address){
+	if (node->GetObject<RoutingProtocol>()->isItNeighbor(address)){
+		std::cout << "Aborting simulation - Neighbors\n";
+		Simulator::Stop();
+	}
+}
+
 static void TrackTarget (Ptr<Node> target, Ptr<Node> tracker){
 		Vector vec = target->GetObject<MobilityModel>()->GetPosition();
 		vec.x += 8;
@@ -565,10 +572,9 @@ int main (int argc, char *argv[]){
 		//apps.Add(udpClientHelper.Install(nodes.Get(1)));
 		apps.Start(Seconds(60));
 		apps.Stop(Seconds(1024));
-		if (true){
 		for (size_t i=30; i<nSimulationSeconds-5; i=i+1){
 			Simulator::Schedule(Seconds (i), &AbortOnNeighbor, nodes.Get(sendingNode), Ipv4Address("10.0.0.1"));
-		}
+			Simulator::Schedule(Seconds (i), &AbortOnNoRouting, nodes.Get(sendingNode), Ipv4Address("10.0.0.1"));
 		}
 		Simulator::Schedule(Seconds (250), &PrintReceivedPackets, udpServer);
 	}
