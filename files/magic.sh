@@ -40,6 +40,19 @@ NS_NODES="$(config_get NS_NODES)"
 NS_ATTACKTYPE="$(config_get NS_ATTACKTYPE)"
 NS_ATTACKLOC="$(config_get NS_ATTACKLOC)"
 NS_DEFENCE="$(config_get NS_DEFENCE)"
+NS_TOTALRUNS="$(config_get NS_TOTALRUNS)"
+NS_CORES="$(config_get NS_CORES)"
+NS_FIRSTI="$(config_get NS_FIRSTI)"
+_BM_NODES="$(config_get BM_NODES)"
+BM_NODES=($_BM_NODES)
+_NS_NODES="$(config_get NS_NODES)"
+NS_NODES=($_NS_NODES)
+_NS_ATTACKTYPE="$(config_get NS_ATTACKTYPE)"
+NS_ATTACKTYPE=($_NS_ATTACKTYPE)
+_NS_ATTACKLOC="$(config_get NS_ATTACKLOC)"
+NS_ATTACKLOC=($_NS_ATTACKLOC)
+_NS_DEFENCE="$(config_get NS_DEFENCE)"
+NS_DEFENCE=($_NS_DEFENCE)
 
 mkdir ${ns_location}/run-${ns_run_location}/
 cp config.cfg ${ns_location}/run-${ns_run_location}/
