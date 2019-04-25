@@ -48,7 +48,7 @@ cp config.cfg ${ns_location}/run-${ns_run_location}/
 
 if [ ! -f ${map_files_location}/${pbf_file_name}.osm.pbf ]; then
 	wget "http://download.geofabrik.de/${pbf_continent}/${pbf_country}/${pbf_file_name}.osm.pbf" -P ${map_files_location}/
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -56,7 +56,7 @@ fi
 
 if [ ! -f ${map_files_location}/${buildings_typ_link} ]; then
 	wget ${buildings_typ_link} -P ${map_files_location}/
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -65,14 +65,14 @@ fi
 if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 	cd ${map_files_location}
 	osmconvert ${pbf_file_name}.osm.pbf -o=${pbf_file_name}.osm
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
 
 	cd ${osrm_build_folder}
 	./prepare_pbf.sh ${map_files_location}/${pbf_file_name}
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -82,7 +82,7 @@ fi
 sudo killall -q start_routed.sh
 #Run map server
 sudo -b ./start_routed.sh ${map_files_location}/${pbf_file_name}.osrm ${port} ${num_cores}
-if [ $retVal -ne 0 ]; then
+if [ $? -ne 0 ]; then
 	echo "ERROR"
 	exit 1
 fi
@@ -94,7 +94,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.net.xml ]; then
 	fi
 	cd ${bm_run_location}
 	netconvert --remove-edges.isolated --keep-edges.in-geo-boundary ${B} --osm-files ${map_files_location}/${pbf_file_name}.osm -o ${map_files_location}/${pbf_file_name}-${B}.net.xml
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -106,7 +106,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.buildings.xml ]; then
 	fi
 	cd ${bm_run_location}
 	polyconvert --prune.in-net --osm.keep-full-type --net-file ${map_files_location}/${pbf_file_name}-${B}.net.xml --osm-files ${map_files_location}/${pbf_file_name}.osm --type-file ${map_files_location}/${buildings_typ_name} -o ${map_files_location}/${pbf_file_name}-${B}.buildings.xml
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -114,7 +114,7 @@ fi
 
 if [ ! -f ${bm_run_location}/${convert_file_name} ]; then
 	wget ${convert_file_link}
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -122,7 +122,7 @@ fi
 
 if [ ! -f ${bm_run_location}/${bm_script_name} ]; then
 	wget ${bm_script_link}
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -133,7 +133,7 @@ nohup ./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NO
 #Run ns simulation
 if [ ! -f ${ns_location}/scratch/${ns_code_name} ]; then
 	wget ${ns_code_link} -P ${ns_location}/scratch/
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -145,7 +145,7 @@ cd ${ns_location}
 if [ ! -f ${ns_location}/run-${ns_run_location}/${ns_script_name} ]; then
 	wget ${ns_script_link} -P ${ns_location}/run-${ns_run_location}/
 	chmod +x ${ns_location}/run-${ns_run_location}/${ns_script_name}
-	if [ $retVal -ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo "ERROR"
 		exit 1
 	fi
@@ -154,8 +154,8 @@ cd ${ns_location}/run-${ns_run_location}/
 nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}" &
 
 if [ ! -f ${ns_location}/run-${ns_run_location}/${parser_script_name} ]; then
-        wget ${parser_script_link} -P ${ns_location}/run-${ns_run_location}/
-        chmod +x ${ns_location}/run-${ns_run_location}/${parser_script_name}
+        wget ${parser_script_link}
+        chmod +x ${parser_script_name}
         if [ $? -ne 0 ]; then
                 echo "ERROR"
                 exit 1
