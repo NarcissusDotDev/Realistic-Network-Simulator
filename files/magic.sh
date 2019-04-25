@@ -167,3 +167,4 @@ if [ $? -ne 0 ]; then
         echo "ERROR"
         exit 1
 fi
+echo "Finished!\n Result statistics can be found in ${ns_location}/run-${ns_run_location}/Isolation.csv"
