@@ -5,6 +5,7 @@ source config.shlib; # load the config library functions
 
 map_files_location="$(config_get map_files_location)"
 buildings_typ_link="$(config_get buildings_typ_link)"
+buildings_typ_name="$(config_get buildings_typ_name)"
 osrm_build_folder="$(config_get osrm_build_folder)"
 convert_file_link="$(config_get convert_file_link)"
 convert_file_name="$(config_get convert_file_name)"
@@ -101,7 +102,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.buildings.xml ]; then
 		mkdir ${bm_run_location}
 	fi
 	cd ${bm_run_location}
-	polyconvert --prune.in-net --osm.keep-full-type --net-file ${map_files_location}/${pbf_file_name}-${B}.net.xml --osm-files ${map_files_location}/${pbf_file_name}.osm --type-file ${map_files_location}/buildings.typ.xml -o ${map_files_location}/${pbf_file_name}-${B}.buildings.xml
+	polyconvert --prune.in-net --osm.keep-full-type --net-file ${map_files_location}/${pbf_file_name}-${B}.net.xml --osm-files ${map_files_location}/${pbf_file_name}.osm --type-file ${map_files_location}/${buildings_typ_name} -o ${map_files_location}/${pbf_file_name}-${B}.buildings.xml
 	if [ $retVal -ne 0 ]; then
 		echo "ERROR"
 		exit 1
