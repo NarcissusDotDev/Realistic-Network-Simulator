@@ -96,12 +96,12 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+if [ ! -d ${bm_run_location} ]; then
+	mkdir ${bm_run_location}
+fi
+cd ${bm_run_location}
 #Create map files
 if [ ! -f ${map_files_location}/${pbf_file_name}-${B}.net.xml ]; then
-	if [ ! -d ${bm_run_location} ]; then
-		mkdir ${bm_run_location}
-	fi
-	cd ${bm_run_location}
 	netconvert --remove-edges.isolated --keep-edges.in-geo-boundary ${B} --osm-files ${map_files_location}/${pbf_file_name}.osm -o ${map_files_location}/${pbf_file_name}-${B}.net.xml
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
