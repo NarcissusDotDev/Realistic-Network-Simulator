@@ -47,7 +47,9 @@ NS_ATTACKTYPE=($_NS_ATTACKTYPE)
 _NS_DEFENCE="$(config_get NS_DEFENCE)"
 NS_DEFENCE=($_NS_DEFENCE)
 
-mkdir ${ns_location}/run-${ns_run_location}/
+if [ ! -d ${ns_location}/run-${ns_run_location}/ ]; then
+	mkdir ${ns_location}/run-${ns_run_location}/
+fi
 cp config.cfg ${ns_location}/run-${ns_run_location}/
 
 #Prepare maps
