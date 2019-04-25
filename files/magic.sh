@@ -44,8 +44,6 @@ _NS_NODES="$(config_get NS_NODES)"
 NS_NODES=($_NS_NODES)
 _NS_ATTACKTYPE="$(config_get NS_ATTACKTYPE)"
 NS_ATTACKTYPE=($_NS_ATTACKTYPE)
-_NS_ATTACKLOC="$(config_get NS_ATTACKLOC)"
-NS_ATTACKLOC=($_NS_ATTACKLOC)
 _NS_DEFENCE="$(config_get NS_DEFENCE)"
 NS_DEFENCE=($_NS_DEFENCE)
 
@@ -156,7 +154,7 @@ if [ ! -f ${ns_location}/run-${ns_run_location}/${ns_script_name} ]; then
 	fi
 fi
 cd ${ns_location}/run-${ns_run_location}/
-nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}" &
+nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_DEFENCE[*]}" &
 
 if [ ! -f ${ns_location}/run-${ns_run_location}/${parser_script_name} ]; then
         wget ${parser_script_link}
@@ -167,7 +165,7 @@ if [ ! -f ${ns_location}/run-${ns_run_location}/${parser_script_name} ]; then
         fi
 fi
 
-python3 ${parser_script_name} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}"
+python3 ${parser_script_name} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_DEFENCE[*]}"
 if [ $? -ne 0 ]; then
         echo "ERROR"
         exit 1
