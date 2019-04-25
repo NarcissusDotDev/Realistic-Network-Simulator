@@ -133,6 +133,10 @@ if [ ! -f ${bm_script_name} ]; then
 fi
 
 nohup ./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NODES[*]}" ${MIN_SPEED} ${MAX_SPEED} ${DURATION} ${CLIPPING} ${PAUSE} ${map_files_location} ${pbf_file_name} ${convert_file_name} ${OFFSET} &
+if [ $? -ne 0 ]; then
+	echo "ERROR"
+	exit 1
+fi
 
 #Run ns simulation
 if [ ! -f ${ns_location}/scratch/${ns_code_name}.cc ]; then
@@ -142,9 +146,19 @@ if [ ! -f ${ns_location}/scratch/${ns_code_name}.cc ]; then
 		exit 1
 	fi
 fi
+
 cd ${ns_location}
 ./waf configure --build-profile=optimized --enable-examples --enable-tests
+if [ $? -ne 0 ]; then
+	echo "ERROR"
+	exit 1
+fi
+
 ./waf build
+if [ $? -ne 0 ]; then
+	echo "ERROR"
+	exit 1
+fi
 
 cd ${ns_location}/run-${ns_run_location}/
 if [ ! -f ${ns_script_name} ]; then
@@ -155,7 +169,12 @@ if [ ! -f ${ns_script_name} ]; then
 		exit 1
 	fi
 fi
+
 nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_DEFENCE[*]}" &
+if [ $? -ne 0 ]; then
+	echo "ERROR"
+	exit 1
+fi
 
 if [ ! -f ${parser_script_name} ]; then
         wget ${parser_script_link}
