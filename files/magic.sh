@@ -87,7 +87,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 fi
 
 
-sudo killall -q start_routed.sh
+sudo killall -q osrm-routed
 #Run map server
 cd ${osrm_build_folder}
 sudo -b ./start_routed.sh ${map_files_location}/${pbf_file_name}.osrm ${port} ${num_cores}
