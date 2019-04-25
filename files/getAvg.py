@@ -3,8 +3,8 @@ import sys, re, os
 import numpy
 import csv
 
-if (len(sys.argv) < 5):
-    print("Usage is " + sys.argv[0] + " [NumberOfNodes] [AttackTypes] [AttaackLocation] [DefenceNumbers]")
+if (len(sys.argv) < 4):
+    print("Usage is " + sys.argv[0] + " [NumberOfNodes] [AttackTypes] [DefenceNumbers]")
     exit()
 
 def parseFile(file_name):
@@ -26,19 +26,17 @@ def parseFile(file_name):
 def parseAll():
     with open('Isolation.csv', 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, dialect='excel')
-        name_template = "Blackhole_n%s_AttackType-%s_AttackLoc-%s_Defence-%s_log.txt"
+        name_template = "Blackhole_n%s_AttackType-%s_Defence-%s_log.txt"
         number_of_nodes = sys.argv[1].split(' ')
         attack_types = sys.argv[2].split(' ')
-        attack_location = sys.argv[3].split(' ')
-        defence_numbers = sys.argv[4].split(' ')
+        defence_numbers = sys.argv[3].split(' ')
 
         csv_writer.writerow(["", "mean", "std", "median", "length"])
         for n in number_of_nodes:
             for attack in attack_types:
-                for loc in attack_location:
-                    for defence in defence_numbers:
-                        mean, std, median, length = parseFile(name_template % (n, attack, loc, defence))
-                        csv_writer.writerow([name_template % (n, attack, loc, defence), mean, std, median, length])
+                for defence in defence_numbers:
+                    mean, std, median, length = parseFile(name_template % (n, attack, loc, defence))
+                    csv_writer.writerow([name_template % (n, attack, defence), mean, std, median, length])
 
 if __name__ == "__main__":
     parseAll()
