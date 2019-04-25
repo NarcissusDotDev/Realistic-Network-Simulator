@@ -41,7 +41,8 @@ NS_ATTACKTYPE="$(config_get NS_ATTACKTYPE)"
 NS_ATTACKLOC="$(config_get NS_ATTACKLOC)"
 NS_DEFENCE="$(config_get NS_DEFENCE)"
 
-
+mkdir ${ns_location}/run-${ns_run_location}/
+cp config.cfg ${ns_location}/run-${ns_run_location}/
 
 #Prepare maps
 
@@ -166,4 +167,3 @@ if [ $? -ne 0 ]; then
         echo "ERROR"
         exit 1
 fi
-cp config.cfg ${ns_location}/run-${ns_run_location}/
