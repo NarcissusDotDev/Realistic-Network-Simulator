@@ -17,6 +17,7 @@ pbf_continent="$(config_get pbf_continent)"
 pbf_file_name="$(config_get pbf_file_name)"
 ns_code_link="$(config_get ns_code_link)"
 ns_code_name="$(config_get ns_code_name)"
+ns_run_location="$(config_get ns_run_location)"
 pbf_country="$(config_get pbf_country)"
 ns_location="$(config_get ns_location)"
 num_cores="$(config_get num_cores)"
@@ -145,7 +146,7 @@ if [ ! -f ${ns_location}/run/${ns_script_name} ]; then
 		exit 1
 	fi
 fi
-cd ${ns_location}/run/
+cd ${ns_location}/run-${ns_run_location}/
 nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}" &
 
 python3 getAvg.py "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}"
