@@ -54,7 +54,7 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm.pbf ]; then
 	fi
 fi
 
-if [ ! -f ${map_files_location}/${buildings_typ_link} ]; then
+if [ ! -f ${map_files_location}/${buildings_typ_name} ]; then
 	wget ${buildings_typ_link} -P ${map_files_location}/
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
