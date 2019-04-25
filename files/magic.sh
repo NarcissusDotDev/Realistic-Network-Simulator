@@ -131,7 +131,7 @@ fi
 nohup ./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NODES[*]}" ${MIN_SPEED} ${MAX_SPEED} ${DURATION} ${CLIPPING} ${PAUSE} ${map_files_location} ${pbf_file_name} ${convert_file_name} ${OFFSET} &
 
 #Run ns simulation
-if [ ! -f ${ns_location}/scratch/${ns_code_name} ]; then
+if [ ! -f ${ns_location}/scratch/${ns_code_name}.cc ]; then
 	wget ${ns_code_link} -P ${ns_location}/scratch/
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
