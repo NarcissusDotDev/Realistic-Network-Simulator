@@ -11,13 +11,13 @@ convert_file_name="$(config_get convert_file_name)"
 bm_run_location="$(config_get bm_run_location)"
 bm_script_link="$(config_get bm_script_link)"
 bm_script_name="$(config_get bm_script_name)"
-ns_script_link="$(config_get bm_script_link)"
-ns_script_name="$(config_get bm_script_name)"
+ns_run_location="$(config_get ns_run_location)"
+ns_script_link="$(config_get ns_script_link)"
+ns_script_name="$(config_get ns_script_name)"
 pbf_continent="$(config_get pbf_continent)"
 pbf_file_name="$(config_get pbf_file_name)"
 ns_code_link="$(config_get ns_code_link)"
 ns_code_name="$(config_get ns_code_name)"
-ns_run_location="$(config_get ns_run_location)"
 pbf_country="$(config_get pbf_country)"
 ns_location="$(config_get ns_location)"
 num_cores="$(config_get num_cores)"
@@ -138,9 +138,9 @@ cd ${ns_location}
 ./waf configure --build-profile=optimized --enable-examples --enable-tests
 ./waf --run scratch/${ns_code_name}
 
-if [ ! -f ${ns_location}/run/${ns_script_name} ]; then
-	wget ${ns_script_link} -P ${ns_location}/run/
-	chmod +x ${ns_location}/run/${ns_script_name}
+if [ ! -f ${ns_location}/run-${ns_run_location}/${ns_script_name} ]; then
+	wget ${ns_script_link} -P ${ns_location}/run-${ns_run_location}/
+	chmod +x ${ns_location}/run-${ns_run_location}/${ns_script_name}
 	if [ $retVal -ne 0 ]; then
 		echo "ERROR"
 		exit 1
