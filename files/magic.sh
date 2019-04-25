@@ -150,5 +150,18 @@ fi
 cd ${ns_location}/run-${ns_run_location}/
 nohup ./${ns_script_name} ${bm_run_location} ${B} ${map_files_location} ${pbf_file_name} ${ns_location} ${ns_code_name} ${NS_TOTALRUNS} ${NS_CORES} ${NS_FIRSTI} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}" &
 
-python3 getAvg.py "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}"
+if [ ! -f ${ns_location}/run-${ns_run_location}/${parser_script_name} ]; then
+        wget ${parser_script_link} -P ${ns_location}/run-${ns_run_location}/
+        chmod +x ${ns_location}/run-${ns_run_location}/${parser_script_name}
+        if [ $? -ne 0 ]; then
+                echo "ERROR"
+                exit 1
+        fi
+fi
+
+python3 ${parser_script_name} "${NS_NODES[*]}" "${NS_ATTACKTYPE[*]}" "${NS_ATTACKLOC[*]}" "${NS_DEFENCE[*]}"
+if [ $? -ne 0 ]; then
+        echo "ERROR"
+        exit 1
+fi
 cp config.cfg ${ns_location}/run-${ns_run_location}/
