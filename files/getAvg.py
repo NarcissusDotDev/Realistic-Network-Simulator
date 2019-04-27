@@ -35,7 +35,7 @@ def parseAll():
         for n in number_of_nodes:
             for attack in attack_types:
                 for defence in defence_numbers:
-                    mean, std, median, length = parseFile(name_template % (n, attack, loc, defence))
+                    mean, std, median, length = parseFile(name_template % (n, attack, defence))
                     csv_writer.writerow([name_template % (n, attack, defence), mean, std, median, length])
 
 if __name__ == "__main__":
