@@ -80,19 +80,10 @@ function runOnCores(){
 	wait
 }
 
-TOTALRUNS=$7 #500
-CORES=$8 #10
-FIRSTI=$9 #0
+TOTALRUNS=$7
+CORES=$8
+FIRSTI=$9
 PERCORE=$(($TOTALRUNS/$CORES))
-
-#for ((N=30; N<= 30; N+=100)); do
-#	for ((ATTACKTYPE=0; ATTACKTYPE <= 1; ATTACKTYPE+=1)); do
-#		for ((DEFENCE=0; DEFENCE <= 1; DEFENCE+=1)); do
-#			runOnCores&
-#			wait
-#		done
-#	done
-#done
 
 for i in ${10}; do
 	N=$i
