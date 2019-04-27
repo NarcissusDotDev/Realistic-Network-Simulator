@@ -150,12 +150,6 @@ if [ ! -f ${ns_location}/scratch/${ns_code_name}.cc ]; then
 fi
 
 cd ${ns_location}
-./waf configure --build-profile=optimized --enable-examples --enable-tests
-if [ $? -ne 0 ]; then
-	echo "ERROR"
-	exit 1
-fi
-
 ./waf build
 if [ $? -ne 0 ]; then
 	echo "ERROR"
