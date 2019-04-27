@@ -7,11 +7,11 @@ MIN_SPEED=$6
 MAX_SPEED=$7
 DURATION=$8
 CLIPPING=$9
-PAUSE=$10
-map_files_location=$11
-pbf_file_name=$12
-convert_file_name=$13
-OFFSET=$14
+PAUSE=${10}
+map_files_location=${11}
+pbf_file_name=${12}
+convert_file_name=${13}
+OFFSET=${14}
 
 function oneRound() {
 	i=$1
@@ -78,7 +78,7 @@ CORES=$3 #10
 FIRSTI=$4 #0
 PERCORE=$(($TOTALRUNS/$CORES))
 
-for i in ${$5[@]}; do
+for i in $5; do
 	N=$i
 	runOnCores&
 	wait
