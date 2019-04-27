@@ -49,7 +49,7 @@ function runScript () {
 		echo Finished run $i on core $R at $d
 		# fi
 	done
-	echo Finished all runs of core $R at $d
+	echo Finished all runs of $N nodes on core $R at $d
 }
 
 # Call function to run on cores
