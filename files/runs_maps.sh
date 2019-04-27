@@ -18,7 +18,7 @@ function runOnce() {
 
 	local NS_NAME="${bm_run_location}/${pbf_file_name}-${B}-${N}-${OFFSET}"
 	local NS_PARAMS="${NS_NAME}.ns_params"
-	local NS_MOVEMENTS="${NS_NAME}-5.ns_movements"
+	local NS_MOVEMENTS="${NS_NAME}.ns_movements"
 	
 	if [ $ATTACKTYPE -eq 1 ]; then
 		local IsolationAttack="true"
