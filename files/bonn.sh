@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Vars
-B1=$1 #"13.3863801,52.510189,13.3928171,52.5158761"
+B1=$1
 B2=`echo $B1 | tr ',' ' '`
 MIN_SPEED=$6
 MAX_SPEED=$7
@@ -73,9 +73,9 @@ function runOnCores(){
 
 set -m # Don\'t lose job control!
 # Make sure TOTALRUNS % CORES = 0. Otherwise there would be leftover process.
-TOTALRUNS=$2 #500
-CORES=$3 #10
-FIRSTI=$4 #0
+TOTALRUNS=$2
+CORES=$3
+FIRSTI=$4
 PERCORE=$(($TOTALRUNS/$CORES))
 
 for i in $5; do
