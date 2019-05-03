@@ -32,7 +32,7 @@ function runOnce() {
                 local EnableFictive="false"
         fi
     	
-	NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name} --bldgFile=$BLDGFILE --paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bIsolationAttackBug=$IsolationAttack --bEnableFictive=$EnableFictive --bMobility=true --bHighRange=true --bUdpServer=true
+	NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name} --bldgFile=$BLDGFILE --paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bIsolationAttackBug=$IsolationAttack --bEnableFictive=$EnableFictive --bMobility=true --bHighRange=true --bUdpServer=true --bBuildings=true
 	
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
