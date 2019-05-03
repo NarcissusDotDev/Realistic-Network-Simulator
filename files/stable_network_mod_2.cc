@@ -360,6 +360,7 @@ int main (int argc, char *argv[]){
 	bool bIsolationAttackMassive = false;
 	bool bConnectivityPrecentage = false;
 	bool bUdpServer = false;
+	bool bBuildings = false;
 
 	// Added variables
 	std::string paramsFile = "PATH/???.ns_params";
@@ -395,6 +396,7 @@ int main (int argc, char *argv[]){
 	cmd.AddValue("bConnectivityPrecentage", "Print connectivity precetage every X seconds", bConnectivityPrecentage);
 	cmd.AddValue("bIsolationAttackBug", "Have an attacker stick to it's target", bIsolationAttackBug);
 	cmd.AddValue("bUdpServer", "Try to send Udp packets from random nodes to the attacked node", bUdpServer);
+	cmd.AddValue("bBuildings", "Load building to simulation", bBuildings);
 	cmd.Parse (argc, argv);
 	
 	// New way of reading parameters
@@ -440,8 +442,10 @@ int main (int argc, char *argv[]){
 	}
 
 	// Load buildings topology
-	Topology::LoadBuildings(bldgFile);
-	wifiChannel.AddPropagationLoss ("ns3::ObstacleShadowingPropagationLossModel");
+	if (bBuildings) {
+                Topology::LoadBuildings(bldgFile);
+                wifiChannel.AddPropagationLoss ("ns3::ObstacleShadowingPropagationLossModel");
+        }
 
 	wifiPhy.SetChannel(wifiChannel.Create());
 	wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager");
