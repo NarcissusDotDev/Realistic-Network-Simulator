@@ -436,7 +436,7 @@ int main (int argc, char *argv[]){
 	if (bHighRange){
 		//wifiPhy.Set("TxGain", DoubleValue(15));
 		wifiPhy.Set("TxGain", DoubleValue(12.4));
-		//wifiChannel.AddPropagationLoss ("ns3::RangePropagationLossModel", "MaxRange", DoubleValue (250));
+		wifiChannel.AddPropagationLoss ("ns3::RangePropagationLossModel", "MaxRange", DoubleValue (250));
 	} else {
 		wifiChannel.AddPropagationLoss ("ns3::RangePropagationLossModel", "MaxRange", DoubleValue (100));
 	}
