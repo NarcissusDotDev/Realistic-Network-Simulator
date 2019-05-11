@@ -54,7 +54,7 @@ function runMultiple() {
 		echo "This is run $i" >> $LOGFILE
 		runOnce $i >> $LOGFILE
 		local d=`date`
-		echo Finished run $i on process $R at $d
+		echo Finished ns run $i on process $R at $d
 	done
 	
 	flock -e $LOGFILETOTAL cat $LOGFILE >> $LOGFILETOTAL
