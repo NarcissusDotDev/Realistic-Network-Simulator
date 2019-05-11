@@ -46,10 +46,10 @@ function runScript () {
 		# if [ ! -f ${pbf_file_name}-${B1}-${N}-${i}.ns_params ]; then
 		oneRound $i > /dev/null
 		local d=`date`
-		echo Finished run $i on core $R at $d
+		echo Finished bm run $i on core $R at $d
 		# fi
 	done
-	echo Finished all runs of $N nodes on core $R at $d
+	echo Finished all bm runs of $N nodes on core $R at $d
 }
 
 # Call function to run on cores
