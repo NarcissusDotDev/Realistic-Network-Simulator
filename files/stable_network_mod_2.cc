@@ -254,6 +254,18 @@ static void AbortOnNeighbor (Ptr<Node> node, Ipv4Address address){
 	}
 }
 
+/*static void AbortOnNoRouting (Ptr<Node> node, Ipv4Address address){
+
+        if (node->GetObject<RoutingProtocol>()->cantRouteTo(address)){
+
+                std::cout << "AbortOnNoRouting\n";
+
+                Simulator::Stop();
+
+        }
+
+}*/
+
 static void TrackTarget (Ptr<Node> target, Ptr<Node> tracker){
 		Vector vec = target->GetObject<MobilityModel>()->GetPosition();
 		vec.x += 8;
@@ -572,6 +584,7 @@ int main (int argc, char *argv[]){
 		for (size_t i=30; i<nSimulationSeconds-5; i=i+1){
 			Simulator::Schedule(Seconds (i), &AbortOnNeighbor, nodes.Get(sendingNode), Ipv4Address("10.0.0.1"));
 			//Simulator::Schedule(Seconds (i), &AbortOnNoRouting, nodes.Get(sendingNode), Ipv4Address("10.0.0.1"));
+			Simulator::Schedule(Seconds (i), &AssertConnectivity, &nodes);
 		}
 		Simulator::Schedule(Seconds (250), &PrintReceivedPackets, udpServer);
 	}
@@ -647,6 +660,22 @@ int main (int argc, char *argv[]){
 
 	// Print Topology Set
 	//Simulator::Schedule(Seconds (35) , &PrintTopologySet, &nodes);
+	
+	/*AnimationInterface anim ("/home/user/ns-allinone-3.24.1/ns-3.24.1/run-only_first_2/Stable_Network_animation.xml");
+
+	anim.SetMobilityPollInterval (Seconds (1));
+
+	for(uint32_t i=0; i<nNodes;i++)
+
+		anim.UpdateNodeSize (i, 10, 10);
+
+		
+
+	anim.UpdateNodeColor(nodes.Get(0), 0, 255, 255);
+
+	anim.UpdateNodeColor(nodes.Get(1), 0, 255, 0);
+
+	anim.UpdateNodeColor(nodes.Get(2), 0, 0, 255);*/
 	
 	// Animation
 	/*AnimationInterface anim ("Stable_Network_animation.xml");
