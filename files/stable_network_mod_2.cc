@@ -243,6 +243,7 @@ static void AssertConnectivity(NodeContainer* cont){
 	//	}
 	//}
 	if (cont->Get(0)->GetObject<RoutingProtocol>()->getRoutingTableSize() != cont->GetN() - 1) {
+                std::cout << "AbortOnNoRouting\n";
 		Simulator::Stop();
 	}
 }
