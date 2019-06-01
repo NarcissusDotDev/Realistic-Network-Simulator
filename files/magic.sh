@@ -47,7 +47,7 @@ NS_ATTACKTYPE=($_NS_ATTACKTYPE)
 _NS_DEFENCE="$(config_get NS_DEFENCE)"
 NS_DEFENCE=($_NS_DEFENCE)
 
-[ "$DEBUG" == 'false' ] && set -x
+[ "$DEBUG" != 'false' ] && set -x
 
 if [ ! -d ${ns_location}/run-${ns_run_location}/ ]; then
 	mkdir ${ns_location}/run-${ns_run_location}/
