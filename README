@@ -1,0 +1,15 @@
+SUMO:
+https://github.com/ec-europa/sumo/blob/master/LICENSE.md
+
+OSRM:
+https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT
+
+BonnMotion:
+https://sys.cs.uos.de/bonnmotion/doc/README.pdf [1    Legal notice]
++
+https://github.com/fabricesb/DCEP-Sim/blob/master/bonn-motion/bonnmotion-3.0.1/GPL
+
+ns-3:
+https://www.nsnam.org/develop/contributing-code/licensing/
++
+ns-3 is free software, licensed under the GNU GPLv2 license, and is publicly available for research, development, and use.
