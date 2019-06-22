@@ -35,7 +35,6 @@ B="$(config_get B)"
 BM_TOTALRUNS="$(config_get BM_TOTALRUNS)"
 BM_CORES="$(config_get BM_CORES)"
 BM_FIRSTI="$(config_get BM_FIRSTI)"
-BM_MODE="$(config_get BM_MODE)"
 buildings="$(config_get buildings)"
 NS_TOTALRUNS="$(config_get NS_TOTALRUNS)"
 NS_CORES="$(config_get NS_CORES)"
@@ -138,7 +137,7 @@ if [ ! -f ${bm_script_name} ]; then
 	fi
 fi
 
-./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NODES[*]}" ${MIN_SPEED} ${MAX_SPEED} ${DURATION} ${CLIPPING} ${PAUSE} ${map_files_location} ${pbf_file_name} ${convert_file_name} ${OFFSET} ${BM_MODE}
+./${bm_script_name} ${B} ${BM_TOTALRUNS} ${BM_CORES} ${BM_FIRSTI} "${BM_NODES[*]}" ${MIN_SPEED} ${MAX_SPEED} ${DURATION} ${CLIPPING} ${PAUSE} ${map_files_location} ${pbf_file_name} ${convert_file_name} ${OFFSET}
 if [ $? -ne 0 ]; then
 	echo "ERROR"
 	exit 1
