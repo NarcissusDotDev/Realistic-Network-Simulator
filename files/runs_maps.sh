@@ -8,6 +8,7 @@ map_files_location=$3
 pbf_file_name=$4
 ns_location=$5
 ns_code_name=$6
+buildings=${13}
 N=0
 ATTACKTYPE=0 # 0 - No Attack, 1 - Loud blackhole, 2 - Silent blackhole
 DEFENCE=0 # 0 - No defence, 1 - DCFM, 2 - DCFM + Route
@@ -32,7 +33,7 @@ function runOnce() {
                 local EnableFictive="false"
         fi
     	
-	NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name} --bldgFile=$BLDGFILE --paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bIsolationAttackBug=$IsolationAttack --bEnableFictive=$EnableFictive --bMobility=true --bHighRange=true --bUdpServer=true --bBuildings=true
+	NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name} --bldgFile=$BLDGFILE --paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bIsolationAttackBug=$IsolationAttack --bEnableFictive=$EnableFictive --bMobility=true --bHighRange=true --bUdpServer=true --bBuildings=${buildings}
 	
 	if [ $? -ne 0 ]; then
 		echo "ERROR"
