@@ -12,13 +12,12 @@ map_files_location=${11}
 pbf_file_name=${12}
 convert_file_name=${13}
 OFFSET=${14}
-BM_MODE=${15}
 
 function oneRound() {
 	i=$1
 	if [ ! -f berlin-latest-${B1}-${N}-${i}.movements.gz ]; then
 		# Run script
-		../bin/bm -f berlin-latest-${B1}-${N}-${i} ${BM_MODE} -n ${N} -B ${B2} -u http://localhost:5000 -s ${MIN_SPEED} ${MAX_SPEED} -C ${CLIPPING} -p ${PAUSE} -d ${DURATION} -o ${map_files_location}/${pbf_file_name}.osm.pbf
+		../bin/bm -f berlin-latest-${B1}-${N}-${i} RandomStreet -n ${N} -B ${B2} -u http://localhost:5000 -s ${MIN_SPEED} ${MAX_SPEED} -C ${CLIPPING} -p ${PAUSE} -d ${DURATION} -o ${map_files_location}/${pbf_file_name}.osm.pbf
 		retVal=$?
 		if [ $retVal -ne 0 ]; then
 			echo "ERROR"
