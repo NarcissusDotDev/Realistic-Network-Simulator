@@ -15,9 +15,9 @@ OFFSET=${14}
 
 function oneRound() {
 	i=$1
-	if [ ! -f berlin-latest-${B1}-${N}-${i}.movements.gz ]; then
+	if [ ! -f ${pbf_file_name}-${B1}-${N}-${i}.movements.gz ]; then
 		# Run script
-		../bin/bm -f berlin-latest-${B1}-${N}-${i} RandomStreet -n ${N} -B ${B2} -u http://localhost:5000 -s ${MIN_SPEED} ${MAX_SPEED} -C ${CLIPPING} -p ${PAUSE} -d ${DURATION} -o ${map_files_location}/${pbf_file_name}.osm.pbf
+		../bin/bm -f ${pbf_file_name}-${B1}-${N}-${i} RandomStreet -n ${N} -B ${B2} -u http://localhost:5000 -s ${MIN_SPEED} ${MAX_SPEED} -C ${CLIPPING} -p ${PAUSE} -d ${DURATION} -o ${map_files_location}/${pbf_file_name}.osm.pbf
 		retVal=$?
 		if [ $retVal -ne 0 ]; then
 			echo "ERROR"
@@ -31,7 +31,7 @@ function oneRound() {
 		echo "ERROR"
 		exit 1
 	fi
-	../bin/bm NSFile -f berlin-latest-${B1}-${N}-${i} -b > /dev/null
+	../bin/bm NSFile -f ${pbf_file_name}-${B1}-${N}-${i} -b > /dev/null
 	retVal=$?
 	if [ $retVal -ne 0 ]; then
 	    echo "ERROR"
