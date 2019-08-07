@@ -19,7 +19,7 @@ function runScript() {
 	local NS_MOVEMENTS="${NS_NAME}.ns_movements"
 		
     # Run script
-    NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name}--paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bMobility=true --bHighRange=true --bUdpServer=true --bMakeBets=true --bFixPos=1 --bRigPath=false --bPrintNeighbors=true --bPrintTwoHops=false --bPrintSelectedTC=true --bPrintMPR=true --bldgFile=$BLDGFILE --bBuildings=${buildings} >> $BETSFILE
+    NS_GLOBAL_VALUE="RngRun=$((OFFSET+FIRSTI))" ${ns_location}/build/scratch/${ns_code_name} --paramsFile=$NS_PARAMS --traceFile=$NS_MOVEMENTS --bMobility=true --bHighRange=true --bUdpServer=true --bMakeBets=true --bFixPos=1 --bRigPath=false --bPrintNeighbors=true --bPrintTwoHops=false --bPrintSelectedTC=true --bPrintMPR=true --bldgFile=$BLDGFILE --bBuildings=${buildings} >> $BETSFILE
     if [ $? -ne 0 ]; then
         echo "ERROR"
         exit 1
