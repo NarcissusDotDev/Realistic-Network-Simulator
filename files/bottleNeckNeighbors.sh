@@ -56,7 +56,7 @@ function runMultiple() {
         echo "This is run $i" >> $MPRFILE
         # echo "This is run $i" >> $TWOHOPFILE
 		
-		runScript $i >> $LOGFILE
+		runScript $i
 		# Extract packets
         mergecap -w tmp.pcap BottleNeck_FixPos_1*.pcap
         tcpdump -n -tt -e -r tmp.pcap | grep -i UDP | uniq -u | awk '{print $1, $2, $3, $4}' >> $PACKETSFILE
