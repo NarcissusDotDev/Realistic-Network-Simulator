@@ -369,6 +369,9 @@ int main (int argc, char *argv[]){
 	cmd.AddValue("bPrintMPR", "Print MPR selections", bPrintMPR);
 	cmd.AddValue("bPrintTwoHops", "Print TwoHop tables", bPrintTwoHops);
 	cmd.AddValue("bRigPath", "Rig forwarding of packets", bRigPath);
+	cmd.AddValue("paramsFile", "paramsFile", paramsFile);
+	cmd.AddValue("traceFile", "traceFile", traceFile);
+	cmd.AddValue("bldgFile", "bldgFile", bldgFile);
 	cmd.Parse (argc, argv);
 	
 	// New way of reading parameters
