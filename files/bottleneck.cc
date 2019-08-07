@@ -351,7 +351,7 @@ int main (int argc, char *argv[]){
 	std::string traceFile = "PATH/???.ns_movements";
 
 	// Parameters from command line
-	// CommandLine cmd;
+	CommandLine cmd;
 	// cmd.AddValue("nNodes", "Number of nodes in the simulation", nNodes);
 	// cmd.AddValue("nMaxGridX", "X of the simulation rectangle", nMaxGridX);
 	// cmd.AddValue("nMaxGridY", "Y of the simulation rectangle", nMaxGridY);
