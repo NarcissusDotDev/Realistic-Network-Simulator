@@ -372,6 +372,7 @@ int main (int argc, char *argv[]){
 	cmd.AddValue("paramsFile", "paramsFile", paramsFile);
 	cmd.AddValue("traceFile", "traceFile", traceFile);
 	cmd.AddValue("bldgFile", "bldgFile", bldgFile);
+	cmd.AddValue("bBuildings", "bldgFile", bBuildings);
 	cmd.Parse (argc, argv);
 	
 	// New way of reading parameters
