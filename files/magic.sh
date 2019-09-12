@@ -80,7 +80,9 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 		echo "ERROR"
 		exit 1
 	fi
+fi
 
+if [ ! -f ${map_files_location}/${pbf_file_name}.osrm ]; then
 	cd ${osrm_build_folder}
 	./prepare_pbf.sh ${map_files_location}/${pbf_file_name}
 	if [ $? -ne 0 ]; then
@@ -88,7 +90,6 @@ if [ ! -f ${map_files_location}/${pbf_file_name}.osm ]; then
 		exit 1
 	fi
 fi
-
 
 sudo killall -q osrm-routed
 #Run map server
