@@ -472,6 +472,8 @@ int main (int argc, char *argv[]){
 
 	// Install IOLSR / DSDV
 	IOlsrHelper iolsr;
+	iolsr.Set("HelloInterval", TimeValue (Seconds (0.2));
+	iolsr.Set("TcInterval", TimeValue (Seconds (0.5));
 	DsdvHelper dsdv;
 	Ipv4ListRoutingHelper routeList;
 	InternetStackHelper internet;
