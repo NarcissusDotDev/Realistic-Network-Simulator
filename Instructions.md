@@ -90,7 +90,7 @@
 Now we need to replace some files with files from [this](https://github.com/Project-OSRM/osrm-backend/tree/a62c10321c0a269e218ab4164c4ccd132048f271/third_party/variant) version.
 
 1.  Download the zip from GitHub using:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/variant.zip`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/variant.zip`
 
 2.  Extract:
 `unzip -o variant.tar.gz`
@@ -134,7 +134,7 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 `cd ns-allinone-3.24.1/ns-3.24.1/src`
 
 6.  Download iolsr module:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/iolsr.tar.gz`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/iolsr.tar.gz`
 
 7.  Extract:
 `tar xzf iolsr.tar.gz`
@@ -143,7 +143,7 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 `rm iolsr.tar.gz
 
 9.  Download obstacle module:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/obstacle.tar.gz`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/obstacle.tar.gz`
 
 10.  Extract:
 `tar zxf obstacle.tar.gz`
@@ -171,9 +171,9 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 ## Run RNS:
 
 1.  Download script files:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/magic.sh`
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/config.shlib`
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/config.cfg`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/magic.sh`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/config.shlib`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/config.cfg`
 
 2.  Edit configuration file:
 `nano config.cfg`
@@ -193,7 +193,7 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 `wget http://download.geofabrik.de/europe/germany/berlin-latest.osm.pbf`
 
 4.  Download types file:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/buildings.typ.xml`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/buildings.typ.xml`
 
 5.  Convert pbf to osm:
 `osmconvert ../maps/berlin-latest.osm.pbf -o=berlin-latest.osm`
@@ -220,7 +220,7 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 `polyconvert --prune.in-net --osm.keep-full-type --net-file ../maps/berlin-latest.net.xml --osm-files ../maps/berlin-latest.osm --type-file ../maps/buildings.typ.xml -o ../maps/berlin-latest.buildings.xml`
 
 13.  Download the projection connection script:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/convert.py`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/convert.py`
 
 14.  Run the script:
 `python3 convert.py s1.movements.geo.gz ../maps/berlin-latest.buildings.xml`
@@ -229,7 +229,7 @@ Now we need to replace some files with files from [this](https://github.com/Proj
 `~/bonnmotion-3.0.0/bin/bm NSFile -f s1 -b`
 
 16.  Download ns script:
-`wget https://github.com/nmontag/Realistic-Network-Simulator/raw/master/files/stable_network_mod_2.cc -P ~/ns-allinone-3.24.1/ns-3.24.1/scratch/`
+`wget https://github.com/NarcissusDotDev/Realistic-Network-Simulator/raw/master/files/stable_network_mod_2.cc -P ~/ns-allinone-3.24.1/ns-3.24.1/scratch/`
 
 17.  Move to build directory:
 `cd ~/ns-allinone-3.24.1/ns-3.24.1`
